@@ -1,0 +1,22 @@
+[project]
+name = "citytiermcp"
+version = "0.1.0"
+description = "A city tier query service based on the 2025 New First-tier Cities Charm Ranking, using FastMCP and SSE protocols."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastmcp",
+]
+
+[project.optional-dependencies]
+dev = []
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+citytiermcp = "main:main"
+
+[tool.setuptools]
+py-modules = ["main", "test_server"]
