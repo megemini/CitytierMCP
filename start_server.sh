@@ -8,4 +8,4 @@ echo ""
 echo "按 Ctrl+C 停止服务器"
 echo ""
 
-python server.py
+python main.py

@@ -66,30 +66,61 @@ python server.py
 
 在 MCP 客户端配置文件中添加：
 
-```json
-{
-  "mcpServers": {
-    "city-tier": {
-      "command": "uvx",
-      "args": ["fastmcp", "run", "server.py"],
-      "cwd": "/path/to/mcp_server/city",
-      "env": {
-        "FASTMCP_LOG_LEVEL": "ERROR"
-      }
-    }
-  }
-}
-```
-
-或者直接运行 Python：
+### SSE 协议配置
 
 ```json
 {
   "mcpServers": {
     "city-tier": {
       "command": "python",
-      "args": ["server.py"],
-      "cwd": "/path/to/mcp_server/city"
+      "args": ["main.py"],
+      "cwd": "/path/to/mcp_server/city",
+      "env": {
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      },
+      "enabled": true,
+      "sse": {
+        "url": "http://localhost:8080/sse"
+      }
+    }
+  }
+}
+```
+
+或者使用项目脚本启动：
+
+```json
+{
+  "mcpServers": {
+    "city-tier": {
+      "command": "bash",
+      "args": ["start_server.sh"],
+      "cwd": "/path/to/mcp_server/city",
+      "enabled": true,
+      "sse": {
+        "url": "http://localhost:8080/sse"
+      }
+    }
+  }
+}
+```
+
+### 使用 uvx 运行
+
+```json
+{
+  "mcpServers": {
+    "city-tier": {
+      "command": "uvx",
+      "args": ["fastmcp", "run", "main.py"],
+      "cwd": "/path/to/mcp_server/city",
+      "env": {
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      },
+      "enabled": true,
+      "sse": {
+        "url": "http://localhost:8080/sse"
+      }
     }
   }
 }

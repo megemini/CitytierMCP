@@ -66,30 +66,61 @@ The server will run in SSE mode, listening on the default port.
 
 Add to MCP client configuration file:
 
-```json
-{
-  "mcpServers": {
-    "city-tier": {
-      "command": "uvx",
-      "args": ["fastmcp", "run", "server.py"],
-      "cwd": "/path/to/mcp_server/city",
-      "env": {
-        "FASTMCP_LOG_LEVEL": "ERROR"
-      }
-    }
-  }
-}
-```
-
-Or run Python directly:
+### SSE Protocol Configuration
 
 ```json
 {
   "mcpServers": {
     "city-tier": {
       "command": "python",
-      "args": ["server.py"],
-      "cwd": "/path/to/mcp_server/city"
+      "args": ["main.py"],
+      "cwd": "/path/to/mcp_server/city",
+      "env": {
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      },
+      "enabled": true,
+      "sse": {
+        "url": "http://localhost:8080/sse"
+      }
+    }
+  }
+}
+```
+
+Or use the project script to start:
+
+```json
+{
+  "mcpServers": {
+    "city-tier": {
+      "command": "bash",
+      "args": ["start_server.sh"],
+      "cwd": "/path/to/mcp_server/city",
+      "enabled": true,
+      "sse": {
+        "url": "http://localhost:8080/sse"
+      }
+    }
+  }
+}
+```
+
+### Using uvx to run
+
+```json
+{
+  "mcpServers": {
+    "city-tier": {
+      "command": "uvx",
+      "args": ["fastmcp", "run", "main.py"],
+      "cwd": "/path/to/mcp_server/city",
+      "env": {
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      },
+      "enabled": true,
+      "sse": {
+        "url": "http://localhost:8080/sse"
+      }
     }
   }
 }
